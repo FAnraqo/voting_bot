@@ -1,6 +1,6 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ReplyKeyboardMarkup
 from telegram.ext import ContextTypes, CallbackQueryHandler, CommandHandler
-from utils.db import load_users, save_users
+from utils.db import load_users, save_users, load_votes, save_votes
 
 
 def register_handlers(app):
