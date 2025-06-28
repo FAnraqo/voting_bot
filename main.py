@@ -2,6 +2,7 @@ from telegram.ext import Application, MessageHandler, filters, ApplicationBuilde
 from config import TOKEN
 from handlers import start, voting, rating
 from handlers.voting import enter_voting, handle_category_choice, handle_vote
+from handlers.rating import show_rating
 from utils.scheduler import setup_scheduler
 
 def main():
@@ -14,6 +15,7 @@ def main():
     app.add_handler(MessageHandler(filters.TEXT & filters.Regex("📷 Перейти к голосованию"), enter_voting))
     app.add_handler(MessageHandler(filters.TEXT & filters.Regex("^(🌿 Природа|⚙️ Инженеры|🏅 Спорт|📁 Разное)$"), handle_category_choice))
     app.add_handler(CallbackQueryHandler(handle_vote, pattern="^vote_"))
+    app.add_handler(CommandHandler("rating", show_rating))
 
     print("Bot is running...")
     app.run_polling()
